@@ -1,17 +1,19 @@
-<%- include('include/header.ejs')  %>
-<body>
-    <%- include('include/nav-bar.ejs')  %>
-    <% if(loggedIn) { %>
-        <h1>You Are Logged In!</h1>
-        
-        <h3>Name: <%=value%></h3>
+<%- include('include/header.ejs') %>
 
-    <% for(let i = 0; i < allUsers.length; i++) { %>
-            <a href="/profile/<%=allUsers[i].id %>"><p><%=allUsers[i].name %></p></a>
-        <% } %>
+    <body>
+        <!-- <%- include('include/nav-bar.ejs') %> -->
+            <h1>This is the Index File from HTML</h1>
+            <h3>Name: <%=value%></h3>
 
-    <% } else { %>
-        <h1>This is the Index File from HTML</h1>
-        <% }%>
-</body>
-</html>
+            <% for(let i=0; i < allUsers.length; i++) { %>
+                <a href="/profile/<%=allUsers[i].id %>">
+                    <p>
+                        <%=allUsers[i].name %>
+                    </p>
+                </a>
+                <% } %>
+
+
+    </body>
+
+    </html>

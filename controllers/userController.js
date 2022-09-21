@@ -2,10 +2,13 @@ const User = require('../models/userModel');
 
 
 exports.getIndex = ((req, res, next) => {
-    const login = false;
-    if(req.get("Cookie")) {
-        login = req.get("Cookie").split("-")[1];
-    }
+    // const login = true;
+    // if(req.get("Cookie")) {
+    //     login = req.get("Cookie").split("-")[1];
+    // }
+
+    const login = req.session.login;
+    console.log(login);
     User.find()
     .then(data => {
         return res.render("index", {
@@ -21,7 +24,7 @@ exports.getIndex = ((req, res, next) => {
 });
 
 
-exports.getLogin = ((req, res, next) => {
+exports.createUser = ((req, res, next) => {
     return res.send('<form method="POST" action="/user"><input type="text" placeholder="Enter Your Name" name="userName"><button type="submit">Submit</button></form>');
 });
 
@@ -47,7 +50,6 @@ exports.getProfile = ((req, res, next) => {
     User.findById(_id)
     .then(data => {
         return res.render("showUser", {
-            loggedIn: 1,
             user: data,
         })
     })
@@ -58,7 +60,7 @@ exports.getProfile = ((req, res, next) => {
     // console.log(_id);
 });
 
-
+/* For Updating Value in Database */
 exports.postProfile = (req, res, next) => {
     let _id = req.params.id;
 
@@ -93,6 +95,7 @@ exports.getLogin = (req, res, next) => {
 };
 
 exports.postLogin = (req, res, next) => {
-    res.setHeader("Set-Cookie", "login-true");
+    // res.setHeader("Set-Cookie", "login-true");
+    req.session.login = true;
     return res.redirect('/');
-}
+};
