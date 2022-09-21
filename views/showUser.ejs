@@ -1,0 +1,10 @@
+<%- include('include/header.ejs')  %>
+<body>
+    <h1><%= user.name %></h1>
+    <%- include('include/nav-bar.ejs')  %>
+    <form method="POST" action="/profile/<%=user.id %>">
+        <input type="text" placeholder="Enter Your Name" name="userName" value="<%= user.name %>">
+        <button type="submit">Update</button></form>
+        <a href="/delete/<%=user.id %>"><p>Delete Data</p></a>
+</body>
+</html>
