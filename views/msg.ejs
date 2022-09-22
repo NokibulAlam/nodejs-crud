@@ -9,10 +9,27 @@
 <body>
     <h1>SOCKET IO</h1>
 
+    <input type="text" placeholder="Enter Your MSG" id="msg">
+    <button onclick = sendMsg()>Send</button>
+
+    <p id="data"></p>
+
+
     <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
     <script>
         const socket = io("http://localhost:3000/");
-        socket('connection');
+        socket.on('connection');
+
+        socket.on('message', data => {
+            document.getElementById('data').innerHTML = data;
+        });
+
+
+        function sendMsg() {
+            const data = document.getElementById('msg').value;
+            // console.log(data);
+            socket.emit('message', data);
+        }
     </script>
 </body>
 </html>

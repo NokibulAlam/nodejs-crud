@@ -58,8 +58,13 @@ mongoose.connect("mongodb://localhost:27017/testNode", {
         // console.log("Connected");
         const server = app.listen(3000);
         const io = require('socket.io')(server);
+        console.log("SERVER CONNECTED");
         io.on('connection', socket => {
-            console.log("Socket Connected - " + socket.id);
+            // console.log("SOCKET Connected - " + socket.id);
+            socket.on('message', data => {
+                // console.log(data);
+                socket.broadcast.emit('message', data);
+            });
         })
     })
     .catch(err => {
