@@ -21,5 +21,9 @@ router.route('/login')
 
 /* FileUpload Route */
 router.post('/fileupload', userController.FileUpload);
+
+/* For Socket IO */
+
+router.get('/msg', userController.getMsg);
     
 module.exports = router;

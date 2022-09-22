@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const multer = require('multer');
+const cors = require('cors');
 
 const app = express();
 
@@ -14,6 +15,9 @@ app.use(express.urlencoded({ extended: false }));
 
 /* For Accessing JSON data in Server */
 app.use(express.json());
+
+/* For CROSS Platform Server Connect */
+app.use(cors());
 
 /* For Uploading File */
 const fileStorege = multer.diskStorage({
@@ -51,8 +55,12 @@ mongoose.connect("mongodb://localhost:27017/testNode", {
     useUnifiedTopology: true,
 })
     .then(result => {
-        console.log("Connected");
-        app.listen(3000);
+        // console.log("Connected");
+        const server = app.listen(3000);
+        const io = require('socket.io')(server);
+        io.on('connection', socket => {
+            console.log("Socket Connected - " + socket.id);
+        })
     })
     .catch(err => {
         console.log(err);

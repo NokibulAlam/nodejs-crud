@@ -105,4 +105,10 @@ exports.postLogin = (req, res, next) => {
 exports.FileUpload = (req, res, next) => {
     console.log(req.body);
     console.log(req.file);
+};
+
+/* For Socket IO */
+
+exports.getMsg = (req, res, next) => {
+    return res.render('msg');
 }

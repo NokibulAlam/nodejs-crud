@@ -12,5 +12,7 @@ exports.postUser = (req, res, next) => {
 
     return res.status(201).json({
         msg: "User Created",
-    })
-}
+    });
+};
+
+
