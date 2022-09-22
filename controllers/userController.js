@@ -8,7 +8,7 @@ exports.getIndex = ((req, res, next) => {
     // }
 
     const login = req.session.login;
-    console.log(login);
+    // console.log(login);
     User.find()
     .then(data => {
         return res.render("index", {
@@ -25,7 +25,7 @@ exports.getIndex = ((req, res, next) => {
 
 
 exports.createUser = ((req, res, next) => {
-    return res.send('<form method="POST" action="/user"><input type="text" placeholder="Enter Your Name" name="userName"><button type="submit">Submit</button></form>');
+    return res.render('createUser');
 });
 
 
@@ -99,3 +99,10 @@ exports.postLogin = (req, res, next) => {
     req.session.login = true;
     return res.redirect('/');
 };
+
+
+/* For FileUploading */
+exports.FileUpload = (req, res, next) => {
+    console.log(req.body);
+    console.log(req.file);
+}

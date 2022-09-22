@@ -18,5 +18,8 @@ router.get('/delete/:id', userController.deleteUser);
 router.route('/login')
     .get(userController.getLogin)
     .post(userController.postLogin);
+
+/* FileUpload Route */
+router.post('/fileupload', userController.FileUpload);
     
 module.exports = router;

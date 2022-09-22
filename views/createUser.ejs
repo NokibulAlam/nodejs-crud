@@ -1,0 +1,7 @@
+<%- include('include/header.ejs')  %>
+
+<form method="POST" action="/fileupload" enctype="multipart/form-data">
+    <input type="text" placeholder="Enter Your Name" name="userName">
+    <input type="file" name="image">
+    <button type="submit">Submit</button>
+</form>
